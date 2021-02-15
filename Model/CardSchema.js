@@ -1,5 +1,4 @@
-  
-const { Schema, model } = require('mongoose');
+const { Schema, model } = require("mongoose");
 
 const CardSchema = new Schema({
   title: {
@@ -17,7 +16,7 @@ const CardSchema = new Schema({
       _id: false,
       user: {
         type: Schema.Types.ObjectId,
-        ref: 'users',
+        ref: "users",
       },
       name: {
         type: String,
@@ -42,4 +41,4 @@ const CardSchema = new Schema({
   },
 });
 
-module.exports = Card = model('card', CardSchema);
+module.exports = Card = model("card", CardSchema);

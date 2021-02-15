@@ -1,4 +1,4 @@
-const { Schema, model } = require('mongoose');
+const { Schema, model } = require("mongoose");
 
 const BoardSchema = new Schema(
   {
@@ -9,7 +9,7 @@ const BoardSchema = new Schema(
     lists: [
       {
         type: Schema.Types.ObjectId,
-        ref: 'lists',
+        ref: "lists",
       },
     ],
     activity: [
@@ -31,7 +31,7 @@ const BoardSchema = new Schema(
         _id: false,
         user: {
           type: Schema.Types.ObjectId,
-          ref: 'users',
+          ref: "users",
         },
         name: {
           type: String,
@@ -39,7 +39,7 @@ const BoardSchema = new Schema(
         },
         role: {
           type: String,
-          default: 'admin',
+          default: "admin",
         },
       },
     ],
@@ -49,4 +49,4 @@ const BoardSchema = new Schema(
   }
 );
 
-module.exports = Board = model('board', BoardSchema);
+module.exports = Board = model("board", BoardSchema);

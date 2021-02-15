@@ -36,10 +36,18 @@ app.use(morgan("combined"));
 app.use(express.json());
 
 const userRouter = require("./Routes/UserRoute")
+const authRouter = (require("./Routes/AuthRoutes"))
 const boardRouter = require("./Routes/BoardRoutes")
+const listsRouter = require("./Routes/ListRoutes")
+const cardRouter = require("./Routes/CardRoutes")
+const checklistRouter = require("./Routes/ChecklistRoutes")
 
 app.use("/user", userRouter)
+app.use("/auth", authRouter)
 app.use("/boards", boardRouter) 
+app.use("/list", listsRouter)
+app.use("/cards", cardRouter)
+app.use("/checklists", checklistRouter)
 
 
 

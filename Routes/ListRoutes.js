@@ -1,17 +1,17 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const auth = require('../Middleware/auth');
-const member = require('../Middleware/Members');
-const { check, validationResult } = require('express-validator');
+const auth = require("../Middleware/auth");
+const member = require("../Middleware/Members");
+const { check, validationResult } = require("express-validator");
 
-const User = require('../Model/UserSchema');
-const Board = require('../Model/BoardSchema');
-const List = require('../Model/ListSchema');
+const User = require("../Model/UserSchema");
+const Board = require("../Model/BoardSchema");
+const List = require("../Model/ListSchema");
 
 // Add a list
 router.post(
-  '/',
-  [auth, member, [check('title', 'Title is required').not().isEmpty()]],
+  "/",
+  [auth, member, [check("title", "Title is required").not().isEmpty()]],
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -20,7 +20,7 @@ router.post(
 
     try {
       const title = req.body.title;
-      const boardId = req.header('boardId');
+      const boardId = req.header("boardId");
 
       // Create and save the list
       const newList = new List({ title });
@@ -40,17 +40,17 @@ router.post(
       res.json(list);
     } catch (err) {
       console.error(err.message);
-      res.status(500).send('Server Error');
+      res.status(500).send("Server Error");
     }
   }
 );
 
 // Get all of a board's lists
-router.get('/boardLists/:boardId', auth, async (req, res) => {
+router.get("/boardLists/:boardId", auth, async (req, res) => {
   try {
     const board = await Board.findById(req.params.boardId);
     if (!board) {
-      return res.status(404).json({ msg: 'Board not found' });
+      return res.status(404).json({ msg: "Board not found" });
     }
 
     const lists = [];
@@ -61,29 +61,29 @@ router.get('/boardLists/:boardId', auth, async (req, res) => {
     res.json(lists);
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server Error');
+    res.status(500).send("Server Error");
   }
 });
 
 // Get a list by id
-router.get('/:id', auth, async (req, res) => {
+router.get("/:id", auth, async (req, res) => {
   try {
     const list = await List.findById(req.params.id);
     if (!list) {
-      return res.status(404).json({ msg: 'List not found' });
+      return res.status(404).json({ msg: "List not found" });
     }
 
     res.json(list);
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server Error');
+    res.status(500).send("Server Error");
   }
 });
 
 // Edit a list's title
 router.patch(
-  '/rename/:id',
-  [auth, member, [check('title', 'Title is required').not().isEmpty()]],
+  "/rename/:id",
+  [auth, member, [check("title", "Title is required").not().isEmpty()]],
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -93,7 +93,7 @@ router.patch(
     try {
       const list = await List.findById(req.params.id);
       if (!list) {
-        return res.status(404).json({ msg: 'List not found' });
+        return res.status(404).json({ msg: "List not found" });
       }
 
       list.title = req.body.title;
@@ -102,25 +102,25 @@ router.patch(
       res.json(list);
     } catch (err) {
       console.error(err.message);
-      res.status(500).send('Server Error');
+      res.status(500).send("Server Error");
     }
   }
 );
 
 // Archive/Unarchive a list
-router.patch('/archive/:archive/:id', [auth, member], async (req, res) => {
+router.patch("/archive/:archive/:id", [auth, member], async (req, res) => {
   try {
     const list = await List.findById(req.params.id);
     if (!list) {
-      return res.status(404).json({ msg: 'List not found' });
+      return res.status(404).json({ msg: "List not found" });
     }
 
-    list.archived = req.params.archive === 'true';
+    list.archived = req.params.archive === "true";
     await list.save();
 
     // Log activity
     const user = await User.findById(req.user.id);
-    const board = await Board.findById(req.header('boardId'));
+    const board = await Board.findById(req.header("boardId"));
     board.activity.unshift({
       text: list.archived
         ? `${user.name} archived list '${list.title}'`
@@ -131,19 +131,19 @@ router.patch('/archive/:archive/:id', [auth, member], async (req, res) => {
     res.json(list);
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server Error');
+    res.status(500).send("Server Error");
   }
 });
 
 // Move a list
-router.patch('/move/:id', [auth, member], async (req, res) => {
+router.patch("/move/:id", [auth, member], async (req, res) => {
   try {
     const toIndex = req.body.toIndex ? req.body.toIndex : 0;
-    const boardId = req.header('boardId');
+    const boardId = req.header("boardId");
     const board = await Board.findById(boardId);
     const listId = req.params.id;
     if (!listId) {
-      return res.status(404).json({ msg: 'List not found' });
+      return res.status(404).json({ msg: "List not found" });
     }
 
     board.lists.splice(board.lists.indexOf(listId), 1);
@@ -153,7 +153,7 @@ router.patch('/move/:id', [auth, member], async (req, res) => {
     res.send(board.lists);
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server Error');
+    res.status(500).send("Server Error");
   }
 });
 
