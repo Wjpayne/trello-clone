@@ -136,7 +136,7 @@ const Login = () => {
               </Link>
             </Grid>
           </Grid>
-          <p>Log in with email: <strong>user@user.com</strong> password: <strong>password</strong> to see a demo</p>
+          <p>Log in with email: <strong>trello@user.com</strong> password: <strong>password</strong> to see a demo</p>
         </form>
       </Paper>
     </div>
