@@ -90,7 +90,7 @@ const MoveList = ({ listId, closeMenu }) => {
           <FormControl>
             <InputLabel shrink>Position</InputLabel>
             <Select
-            className = {classes.input}
+              className={classes.input}
               InputProps={{
                 disableUnderline: true,
               }}
