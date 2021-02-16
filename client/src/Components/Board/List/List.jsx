@@ -8,8 +8,38 @@ import ListMenu from './ListMenu';
 import Card from '../Card/Card';
 import CreateCardForm from './CreateCardForm';
 import Button from '@material-ui/core/Button';
+import { makeStyles } from "@material-ui/core"
+
+const listStyles = makeStyles(() => ({
+  button: {
+    color: "#bbbc75",
+    transition: "0.3s",
+    "&:hover": {
+      color: "#bbbc75",
+      backgroundColor: "white",
+    },
+    backgroundColor: "white",
+  },
+  input: {
+    "& .Mui-focused": {
+      color: "#585858",
+    },
+  },
+
+  submit: {
+    backgroundColor: "#414f55",
+    color: "white",
+    "&:hover": {
+      backgroundColor: "#414f55",
+    },
+    marginTop: "10px"
+  },
+}));
+
+
 
 const List = ({ listId, index }) => {
+  const classes = listStyles()
   const [addingCard, setAddingCard] = useState(false);
   const list = useSelector((state) =>
     state.board.board.listObjects.find((object) => object._id === listId)
@@ -63,7 +93,7 @@ const List = ({ listId, index }) => {
           </Droppable>
           {!addingCard && (
             <div className='create-card-button'>
-              <Button variant='contained' onClick={() => setAddingCard(true)}>
+              <Button className = {classes.button} variant='contained' onClick={() => setAddingCard(true)}>
                 + Add a card
               </Button>
             </div>

@@ -15,6 +15,7 @@ import { makeStyles } from "@material-ui/core"
 const listStyles = makeStyles(() => ({
   button: {
     color: "#bbbc75",
+    marginTop: "10px",
     transition: "0.3s",
     "&:hover": {
       color: "#bbbc75",
@@ -28,14 +29,7 @@ const listStyles = makeStyles(() => ({
     },
   },
 
-  submit: {
-    backgroundColor: "#414f55",
-    color: "white",
-    "&:hover": {
-      backgroundColor: "#414f55",
-    },
-    marginTop: "10px"
-  },
+
 }));
 
 const Card = ({ cardId, list, index }) => {
@@ -182,7 +176,7 @@ const Card = ({ cardId, list, index }) => {
             </CardContent>
           </CardMUI>
           <div className="card-actions">
-            <Button type="submit" variant="contained" className = {classes.submit}>
+            <Button type="submit" variant="contained" className = {classes.button}>
               Save
             </Button>
             <Button

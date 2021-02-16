@@ -76,10 +76,10 @@ const CreateList = () => {
         />
         <div>
           <Button
-            className={classes.submit}
+            className={classes.button}
             type="submit"
             variant="contained"
-            color="primary"
+            
           >
             Add List
           </Button>
