@@ -28,10 +28,10 @@ function App() {
           <Fragment>
             <Switch>
               <Route exact path="/" component={LandingPage} />
-              <Route exact path="/login" component={Login} />
-              <Route exact path="/register" component={Register} />
-              <Route exact path="/dashboard" component={Dashboard} />
-              <Route exact path="/board/:id" component={Board} />
+              <Route path="/login" component={Login} />
+              <Route path="/register" component={Register} />
+              <Route path="/dashboard" component={Dashboard} />
+              <Route path="/board/:id" component={Board} />
             </Switch>
           </Fragment>
         </Router>
