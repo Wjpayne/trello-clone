@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setAlert } from "../Actions/Alert";
 import { register } from "../Actions/Auth";
@@ -10,6 +10,7 @@ import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import { Paper } from "@material-ui/core";
+
 
 const registerStyles = makeStyles((theme) => ({
   paper: {
@@ -173,7 +174,7 @@ const Register = () => {
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
-              <Link className = {classes.link}href="/login" variant="body2">
+              <Link className = {classes.link} to = "./login" variant="body2">
                 Already have an account? Sign in
               </Link>
             </Grid>

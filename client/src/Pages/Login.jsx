@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { login } from "../Actions/Auth";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-import Link from "@material-ui/core/Link";
+
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles, Paper } from "@material-ui/core";
@@ -128,7 +128,7 @@ const Login = () => {
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
-              <Link className={classes.link} href="/register" variant="body2">
+              <Link className={classes.link} to = "/register" variant="body2">
                 Don't have an account? Sign Up
               </Link>
             </Grid>
