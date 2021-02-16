@@ -49,7 +49,7 @@ app.use("/lists", listsRouter)
 app.use("/cards", cardRouter)
 app.use("/checklists", checklistRouter)
 
-
+//set route to load
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "client", "build", "index.html"));
