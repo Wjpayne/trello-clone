@@ -1,8 +1,7 @@
-
-import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { renameBoard } from '../../../Actions/Board';
-import { TextField } from '@material-ui/core';
+import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { renameBoard } from "../../../Actions/Board";
+import { TextField } from "@material-ui/core";
 
 const BoardTitle = ({ board }) => {
   const [editing, setEditing] = useState(false);
@@ -20,22 +19,24 @@ const BoardTitle = ({ board }) => {
   };
 
   return !editing ? (
-    <h2 className='board-title' onClick={() => setEditing(true)}>
+    <h2 className="board-title" onClick={() => setEditing(true)}>
       {board.title}
     </h2>
   ) : (
-    <form className='board-title-form' onSubmit={(e) => onSubmit(e)}>
+    <form className="board-title-form" onSubmit={(e) => onSubmit(e)}>
       <TextField
-        variant='outlined'
+        
+        variant="filled"
+        InputProps={{
+          disableUnderline: true,
+        }}
         required
         value={title}
-        size='small'
+        size="small"
         onChange={(e) => setTitle(e.target.value)}
       />
     </form>
   );
 };
-
-
 
 export default BoardTitle;

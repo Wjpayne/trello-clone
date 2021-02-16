@@ -19,6 +19,7 @@
   
   .dashboard .dashboard-loading {
     margin: 40px;
+    
   }
   
   .dashboard .boards {
@@ -88,6 +89,7 @@
   }
   
   .board .board-top .board-top-left {
+    margin-top: 130px;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
@@ -100,9 +102,9 @@
   }
   
   .board .board-top .board-top-left .board-title {
+    text-align: center;
     cursor: pointer;
     color: snow;
-    padding: 5px 0 0 5px;
     max-width: 500px;
     white-space: nowrap;
     overflow: hidden;

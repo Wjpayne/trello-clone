@@ -27,6 +27,13 @@ const drawerStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "space-between",
     width: 150,
+    color: "#bbbc75",
+    transition: "0.3s",
+    "&:hover": {
+      color: "#bbbc75",
+      backgroundColor: "white",
+    },
+    backgroundColor: "white",
   },
   drawer: {
     width: drawerWidth,

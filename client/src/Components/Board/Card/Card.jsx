@@ -1,22 +1,50 @@
-import React, { Fragment, useRef, useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import PropTypes from 'prop-types';
-import { Draggable } from 'react-beautiful-dnd';
-import { getCard, editCard } from '../../../Actions/Board';
-// import getInitials from '../../utils/GetInitials';
-import CardMUI from '@material-ui/core/Card';
-import EditIcon from '@material-ui/icons/Edit';
-import CloseIcon from '@material-ui/icons/Close';
-import SubjectIcon from '@material-ui/icons/Subject';
-import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
-import { TextField, CardContent, Button, Avatar, Tooltip } from '@material-ui/core';
-import CardModal from './CardModal';
+import React, { Fragment, useRef, useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import PropTypes from "prop-types";
+import { Draggable } from "react-beautiful-dnd";
+import { getCard, editCard } from "../../../Actions/Board";
+import CardMUI from "@material-ui/core/Card";
+import EditIcon from "@material-ui/icons/Edit";
+import CloseIcon from "@material-ui/icons/Close";
+import SubjectIcon from "@material-ui/icons/Subject";
+import AssignmentTurnedInIcon from "@material-ui/icons/AssignmentTurnedIn";
+import { TextField, CardContent, Button } from "@material-ui/core";
+import CardModal from "./CardModal";
+import { makeStyles } from "@material-ui/core"
+
+const listStyles = makeStyles(() => ({
+  button: {
+    color: "#bbbc75",
+    transition: "0.3s",
+    "&:hover": {
+      color: "#bbbc75",
+      backgroundColor: "white",
+    },
+    backgroundColor: "white",
+  },
+  input: {
+    "& .Mui-focused": {
+      color: "#585858",
+    },
+  },
+
+  submit: {
+    backgroundColor: "#414f55",
+    color: "white",
+    "&:hover": {
+      backgroundColor: "#414f55",
+    },
+    marginTop: "10px"
+  },
+}));
 
 const Card = ({ cardId, list, index }) => {
+
+  const classes = listStyles()
   const [editing, setEditing] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [mouseOver, setMouseOver] = useState(false);
-  const [title, setTitle] = useState('');
+  const [title, setTitle] = useState("");
   const [height, setHeight] = useState(0);
   const [completeItems, setCompleteItems] = useState(0);
   const cardRef = useRef(null);
@@ -54,7 +82,7 @@ const Card = ({ cardId, list, index }) => {
   };
 
   return !card || (card && card.archived) ? (
-    ''
+    ""
   ) : (
     <Fragment>
       <CardModal
@@ -68,7 +96,7 @@ const Card = ({ cardId, list, index }) => {
         <Draggable draggableId={cardId} index={index}>
           {(provided) => (
             <CardMUI
-              className={`card ${mouseOver && !editing ? 'mouse-over' : ''}`}
+              className={`card ${mouseOver && !editing ? "mouse-over" : ""}`}
               onMouseOver={() => setMouseOver(true)}
               onMouseLeave={() => setMouseOver(false)}
               ref={provided.innerRef}
@@ -78,14 +106,14 @@ const Card = ({ cardId, list, index }) => {
               {mouseOver && !editing && (
                 <Button
                   style={{
-                    position: 'absolute',
+                    position: "absolute",
                     bottom: height - 40,
-                    left: '180px',
+                    left: "180px",
                     zIndex: 1,
                   }}
                   onClick={() => setEditing(true)}
                 >
-                  <EditIcon fontSize='small' />
+                  <EditIcon fontSize="small" />
                 </Button>
               )}
               <CardContent
@@ -95,43 +123,53 @@ const Card = ({ cardId, list, index }) => {
                 }}
                 ref={cardRef}
               >
-                {card.label && card.label !== 'none' && (
-                  <div className='card-label' style={{ backgroundColor: card.label }} />
+                {card.label && card.label !== "none" && (
+                  <div
+                    className="card-label"
+                    style={{ backgroundColor: card.label }}
+                  />
                 )}
                 <p>{card.title}</p>
-                <div className='card-bottom'>
-                  <div className='card-bottom-left'>
+                <div className="card-bottom">
+                  <div className="card-bottom-left">
                     {card.description && (
-                      <SubjectIcon className='description-indicator' fontSize='small' />
+                      <SubjectIcon
+                        className="description-indicator"
+                        fontSize="small"
+                      />
                     )}
                     {card.checklist && card.checklist.length > 0 && (
                       <div
                         className={`checklist-indicator ${
                           completeItems === card.checklist.length
-                            ? 'completed-checklist-indicator'
-                            : ''
+                            ? "completed-checklist-indicator"
+                            : ""
                         }`}
                       >
                         <AssignmentTurnedInIcon
-                          fontSize='small'
-                          className='checklist-indicator-icon'
+                          fontSize="small"
+                          className="checklist-indicator-icon"
                         />
                         {completeItems}/{card.checklist.length}
                       </div>
                     )}
                   </div>
-
                 </div>
               </CardContent>
             </CardMUI>
           )}
         </Draggable>
       ) : (
-        <form className='create-card-form' onSubmit={(e) => onSubmitEdit(e)}>
+        <form className="create-card-form" onSubmit={(e) => onSubmitEdit(e)}>
           <CardMUI>
-            <CardContent className='card-edit-content'>
+            <CardContent className="card-edit-content">
               <TextField
-                margin='normal'
+              className = {classes.input}
+                variant="filled"
+                InputProps={{
+                  disableUnderline: true,
+                }}
+                margin="normal"
                 fullWidth
                 multiline
                 required
@@ -139,12 +177,12 @@ const Card = ({ cardId, list, index }) => {
                 autoFocus
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                onKeyPress={(e) => e.key === 'Enter' && onSubmitEdit(e)}
+                onKeyPress={(e) => e.key === "Enter" && onSubmitEdit(e)}
               />
             </CardContent>
           </CardMUI>
-          <div className='card-actions'>
-            <Button type='submit' variant='contained' color='primary'>
+          <div className="card-actions">
+            <Button type="submit" variant="contained" className = {classes.submit}>
               Save
             </Button>
             <Button

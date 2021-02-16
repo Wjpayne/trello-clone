@@ -42,10 +42,10 @@ const listsRouter = require("./Routes/ListRoutes")
 const cardRouter = require("./Routes/CardRoutes")
 const checklistRouter = require("./Routes/ChecklistRoutes")
 
-app.use("/user", userRouter)
+app.use("/users", userRouter)
 app.use("/auth", authRouter)
 app.use("/boards", boardRouter) 
-app.use("/list", listsRouter)
+app.use("/lists", listsRouter)
 app.use("/cards", cardRouter)
 app.use("/checklists", checklistRouter)
 

@@ -46,7 +46,7 @@ const Board = ({ match }) => {
     <Fragment>
       <NavBar />
       <Box className='board-loading'>
-        <CircularProgress />
+        <CircularProgress style = {{color: "#d9a693"}} />
       </Box>
     </Fragment>
   ) : (

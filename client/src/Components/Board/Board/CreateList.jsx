@@ -1,13 +1,38 @@
+import React, { useRef, useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { addList } from "../../../Actions/Board";
+import { TextField, Button } from "@material-ui/core";
+import CloseIcon from "@material-ui/icons/Close";
+import { makeStyles } from "@material-ui/core";
 
-import React, { useRef, useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { addList } from '../../../Actions/Board';
-import { TextField, Button } from '@material-ui/core';
-import CloseIcon from '@material-ui/icons/Close';
+const listStyles = makeStyles(() => ({
+  button: {
+    color: "#bbbc75",
+    transition: "0.3s",
+    "&:hover": {
+      color: "#bbbc75",
+      backgroundColor: "white",
+    },
+    backgroundColor: "white",
+  },
+  input: {
+    "& .Mui-focused": {
+      color: "#585858",
+    },
+  },
+
+  submit: {
+    backgroundColor: "#414f55",
+    "&:hover": {
+      backgroundColor: "#414f55",
+    },
+  },
+}));
 
 const CreateList = () => {
+  const classes = listStyles();
   const [adding, setAdding] = useState(false);
-  const [title, setTitle] = useState('');
+  const [title, setTitle] = useState("");
   const dispatch = useDispatch();
 
   const formRef = useRef(null);
@@ -18,36 +43,50 @@ const CreateList = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     dispatch(addList({ title }));
-    setTitle('');
+    setTitle("");
   };
 
   return !adding ? (
-    <div className='create-list-button'>
-      <Button variant='contained' onClick={() => setAdding(true)}>
+    <div className="create-list-button">
+      <Button
+        className={classes.button}
+        variant="contained"
+        onClick={() => setAdding(true)}
+      >
         + Add a list
       </Button>
     </div>
   ) : (
-    <div ref={formRef} className='create-list-form'>
+    <div ref={formRef} className="create-list-form">
       <form onSubmit={(e) => onSubmit(e)}>
         <TextField
-          variant='outlined'
+          InputProps={{
+            disableUnderline: true,
+          }}
+          className={classes.input}
+          variant="filled"
+          margin="normal"
           fullWidth
-          margin='normal'
+          margin="normal"
           required
-          label='Enter list title'
+          label="Enter list title"
           autoFocus
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
         <div>
-          <Button type='submit' variant='contained' color='primary'>
+          <Button
+            className={classes.submit}
+            type="submit"
+            variant="contained"
+            color="primary"
+          >
             Add List
           </Button>
           <Button
             onClick={() => {
               setAdding(false);
-              setTitle('');
+              setTitle("");
             }}
           >
             <CloseIcon />
