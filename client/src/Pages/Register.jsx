@@ -24,6 +24,9 @@ const registerStyles = makeStyles((theme) => ({
     height: "500px",
     width: "500px",
     outline: "none",
+    [theme.breakpoints.down("xs")]: {
+      width: "100%"
+    },
   },
 
   div: {

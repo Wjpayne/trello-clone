@@ -22,6 +22,9 @@ const loginStyles = makeStyles((theme) => ({
     height: "500px",
     width: "500px",
     outline: "none",
+    [theme.breakpoints.down("sm")]: {
+      width: "100%"
+    },
   },
 
   div: {
