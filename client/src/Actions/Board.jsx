@@ -33,14 +33,14 @@ const config = {
   },
 };
 
-const url = "http://localhost:5000";
+// const url = "http://localhost:5000";
 
 // Get boards
 export const getBoards = () => async (dispatch) => {
   try {
     dispatch({ type: CLEAR_BOARD });
 
-    const res = await axios.get(url + "/boards");
+    const res = await axios.get("/boards");
 
     dispatch({
       type: GET_BOARDS,
@@ -57,7 +57,7 @@ export const getBoards = () => async (dispatch) => {
 // Get board
 export const getBoard = (id) => async (dispatch) => {
   try {
-    const res = await axios.get(url + `/boards/${id}`);
+    const res = await axios.get(`/boards/${id}`);
 
     if (res) {
       axios.defaults.headers.common["boardId"] = id;
@@ -82,7 +82,7 @@ export const addBoard = (formData, history) => async (dispatch) => {
   try {
     const body = JSON.stringify(formData);
 
-    const res = await axios.post(url + "/boards", body, config);
+    const res = await axios.post("/boards", body, config);
 
     dispatch({
       type: ADD_BOARD,
@@ -104,7 +104,7 @@ export const addBoard = (formData, history) => async (dispatch) => {
 export const renameBoard = (boardId, formData) => async (dispatch) => {
   try {
     const res = await axios.patch(
-      url + `/boards/rename/${boardId}`,
+      `/boards/rename/${boardId}`,
       formData,
       config
     );
@@ -126,7 +126,7 @@ export const renameBoard = (boardId, formData) => async (dispatch) => {
 // Get list
 export const getList = (id) => async (dispatch) => {
   try {
-    const res = await axios.get(url + `/lists/${id}`);
+    const res = await axios.get(`/lists/${id}`);
 
     dispatch({
       type: GET_LIST,
@@ -145,7 +145,7 @@ export const addList = (formData) => async (dispatch) => {
   try {
     const body = JSON.stringify(formData);
 
-    const res = await axios.post(url + "/lists", body, config);
+    const res = await axios.post("/lists", body, config);
 
     dispatch({
       type: ADD_LIST,
@@ -164,11 +164,7 @@ export const addList = (formData) => async (dispatch) => {
 // Rename list
 export const renameList = (listId, formData) => async (dispatch) => {
   try {
-    const res = await axios.patch(
-      url + `/lists/rename/${listId}`,
-      formData,
-      config
-    );
+    const res = await axios.patch(`/lists/rename/${listId}`, formData, config);
 
     dispatch({
       type: RENAME_LIST,
@@ -185,7 +181,7 @@ export const renameList = (listId, formData) => async (dispatch) => {
 // Archive/Unarchive list
 export const archiveList = (listId, archive) => async (dispatch) => {
   try {
-    const res = await axios.patch(url + `/lists/archive/${archive}/${listId}`);
+    const res = await axios.patch(`/lists/archive/${archive}/${listId}`);
 
     dispatch({
       type: ARCHIVE_LIST,
@@ -204,7 +200,7 @@ export const archiveList = (listId, archive) => async (dispatch) => {
 // Get card
 export const getCard = (id) => async (dispatch) => {
   try {
-    const res = await axios.get(url + `/cards/${id}`);
+    const res = await axios.get(`/cards/${id}`);
 
     dispatch({
       type: GET_CARD,
@@ -223,7 +219,7 @@ export const addCard = (formData) => async (dispatch) => {
   try {
     const body = JSON.stringify(formData);
 
-    const res = await axios.post(url + "/cards", body, config);
+    const res = await axios.post("/cards", body, config);
 
     dispatch({
       type: ADD_CARD,
@@ -242,11 +238,7 @@ export const addCard = (formData) => async (dispatch) => {
 // Edit card
 export const editCard = (cardId, formData) => async (dispatch) => {
   try {
-    const res = await axios.patch(
-      url + `/cards/edit/${cardId}`,
-      formData,
-      config
-    );
+    const res = await axios.patch(`/cards/edit/${cardId}`, formData, config);
 
     dispatch({
       type: EDIT_CARD,
@@ -265,7 +257,7 @@ export const moveCard = (cardId, formData) => async (dispatch) => {
   try {
     const body = JSON.stringify(formData);
 
-    const res = await axios.patch(url + `/cards/move/${cardId}`, body, config);
+    const res = await axios.patch(`/cards/move/${cardId}`, body, config);
 
     dispatch({
       type: MOVE_CARD,
@@ -284,7 +276,7 @@ export const moveCard = (cardId, formData) => async (dispatch) => {
 // Archive/Unarchive card
 export const archiveCard = (cardId, archive) => async (dispatch) => {
   try {
-    const res = await axios.patch(url + `/cards/archive/${archive}/${cardId}`);
+    const res = await axios.patch(`/cards/archive/${archive}/${cardId}`);
 
     dispatch({
       type: ARCHIVE_CARD,
@@ -303,7 +295,7 @@ export const archiveCard = (cardId, archive) => async (dispatch) => {
 // Delete card
 export const deleteCard = (listId, cardId) => async (dispatch) => {
   try {
-    const res = await axios.delete(url + `/cards/${listId}/${cardId}`);
+    const res = await axios.delete(`/cards/${listId}/${cardId}`);
 
     dispatch({
       type: DELETE_CARD,
@@ -324,7 +316,7 @@ export const getActivity = () => async (dispatch) => {
   try {
     const boardId = axios.defaults.headers.common["boardId"];
 
-    const res = await axios.get(url + `/boards/activity/${boardId}`);
+    const res = await axios.get(`/boards/activity/${boardId}`);
 
     dispatch({
       type: GET_ACTIVITY,
@@ -341,7 +333,7 @@ export const getActivity = () => async (dispatch) => {
 // Add member
 export const addMember = (userId) => async (dispatch) => {
   try {
-    const res = await axios.put(url + `/boards/addMember/${userId}`);
+    const res = await axios.put(`/boards/addMember/${userId}`);
 
     dispatch({
       type: ADD_MEMBER,
@@ -362,7 +354,7 @@ export const moveList = (listId, formData) => async (dispatch) => {
   try {
     const body = JSON.stringify(formData);
 
-    const res = await axios.patch(url + `/lists/move/${listId}`, body, config);
+    const res = await axios.patch(`/lists/move/${listId}`, body, config);
 
     dispatch({
       type: MOVE_LIST,
@@ -381,9 +373,7 @@ export const addCardMember = (formData) => async (dispatch) => {
   try {
     const { add, cardId, userId } = formData;
 
-    const res = await axios.put(
-      url + `/cards/addMember/${add}/${cardId}/${userId}`
-    );
+    const res = await axios.put(`/cards/addMember/${add}/${cardId}/${userId}`);
 
     dispatch({
       type: ADD_CARD_MEMBER,
@@ -404,7 +394,7 @@ export const addChecklistItem = (cardId, formData) => async (dispatch) => {
   try {
     const body = JSON.stringify(formData);
 
-    const res = await axios.post(url + `/checklists/${cardId}`, body, config);
+    const res = await axios.post(`/checklists/${cardId}`, body, config);
 
     dispatch({
       type: ADD_CHECKLIST_ITEM,
@@ -426,7 +416,7 @@ export const editChecklistItem = (cardId, itemId, formData) => async (
     const body = JSON.stringify(formData);
 
     const res = await axios.patch(
-      url + `/checklists/${cardId}/${itemId}`,
+      `/checklists/${cardId}/${itemId}`,
       body,
       config
     );
@@ -449,7 +439,7 @@ export const completeChecklistItem = (formData) => async (dispatch) => {
     const { cardId, complete, itemId } = formData;
 
     const res = await axios.patch(
-      url + `/checklists/${cardId}/${complete}/${itemId}`
+      `/checklists/${cardId}/${complete}/${itemId}`
     );
 
     dispatch({
@@ -467,7 +457,7 @@ export const completeChecklistItem = (formData) => async (dispatch) => {
 // Delete checklist item
 export const deleteChecklistItem = (cardId, itemId) => async (dispatch) => {
   try {
-    const res = await axios.delete(url + `/checklists/${cardId}/${itemId}`);
+    const res = await axios.delete(`/checklists/${cardId}/${itemId}`);
 
     dispatch({
       type: DELETE_CHECKLIST_ITEM,
