@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles, Button } from "@material-ui/core";
 import { useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 
 const landingPageStyles = makeStyles(() => ({
   title: {
@@ -59,17 +59,17 @@ export const LandingPage = () => {
           <h1 className={classes.title}>Trello Board</h1>
           <p className={classes.subTitle}>
             A replica of the popular{" "}
-            <a className={classes.link} href="href='https://trello.com/">
+            <a className={classes.link} href="https://trello.com/">
               Trello
             </a>{" "}
             APP
           </p>
         </div>
         <div className={classes.buttonDiv}>
-          <Button className={classes.buttons} href="/register">
+          <Button component = {Link} to ="/register" className={classes.buttons} >
             Sign Up
           </Button>
-          <Button className={classes.buttons} href="login">
+          <Button component = {Link} to ="/login" className={classes.buttons} >
             Login
           </Button>
         </div>
