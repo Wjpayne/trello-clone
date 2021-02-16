@@ -1,19 +1,18 @@
-
-import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import PropTypes from 'prop-types';
-import { moveCard } from '../../../Actions/Board';
-import Button from '@material-ui/core/Button';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import useStyles from '../../utils/ModalStyles';
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import PropTypes from "prop-types";
+import { moveCard } from "../../../Actions/Board";
+import Button from "@material-ui/core/Button";
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
+import useStyles from "../../utils/ModalStyles";
 
 const MoveCard = ({ cardId, setOpen, thisList }) => {
   const classes = useStyles();
   const [listObject, setListObject] = useState(null);
-  const [listTitle, setListTitle] = useState('');
+  const [listTitle, setListTitle] = useState("");
   const [position, setPosition] = useState(0);
   const [positions, setPositions] = useState([0]);
   const lists = useSelector((state) => state.board.board.lists);
@@ -21,7 +20,8 @@ const MoveCard = ({ cardId, setOpen, thisList }) => {
     state.board.board.listObjects
       .sort(
         (a, b) =>
-          lists.findIndex((id) => id === a._id) - lists.findIndex((id) => id === b._id)
+          lists.findIndex((id) => id === a._id) -
+          lists.findIndex((id) => id === b._id)
       )
       .filter((list) => !list.archived)
   );
@@ -58,7 +58,11 @@ const MoveCard = ({ cardId, setOpen, thisList }) => {
 
   const onSubmit = async () => {
     dispatch(
-      moveCard(cardId, { fromId: thisList._id, toId: listObject._id, toIndex: position })
+      moveCard(cardId, {
+        fromId: thisList._id,
+        toId: listObject._id,
+        toIndex: position,
+      })
     );
     setOpen(false);
   };
@@ -74,7 +78,9 @@ const MoveCard = ({ cardId, setOpen, thisList }) => {
             required
             onChange={(e) => {
               setListTitle(e.target.value);
-              setListObject(listObjects.find((list) => list.title === e.target.value));
+              setListObject(
+                listObjects.find((list) => list.title === e.target.value)
+              );
             }}
             displayEmpty
           >
@@ -103,8 +109,8 @@ const MoveCard = ({ cardId, setOpen, thisList }) => {
       </div>
       <Button
         className={classes.button}
-        variant='contained'
-        color='primary'
+        variant="contained"
+        color="primary"
         onClick={onSubmit}
       >
         Move Card
