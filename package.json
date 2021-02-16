@@ -1,9 +1,10 @@
-{
+{ "homepage": "/",
   "name": "trellocone",
   "version": "1.0.0",
   "description": "A Trello clone built using the MERN stack.",
   "main": "server.js",
   "scripts": {
+    "build": "cd client && npm run build",
     "start": "node server",
     "server": "nodemon server",
     "client": "npm start --prefix client",

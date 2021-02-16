@@ -8,7 +8,7 @@ require("dotenv").config();
 
 app.use(cors())
 
-const port = process.env.PORT || 5000
+const PORT = process.env.PORT || 5000
 
 mongoose.connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
@@ -51,24 +51,12 @@ app.use("/checklists", checklistRouter)
 
 
 
-app.use((req, res, next) => {
-  const error = new Error("Nothing here!");
-  error.status = 404;
-  next(error);
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
 });
 
-if (process.env.NODE_ENV === 'production') {
-  // Set static folder
-  app.use(express.static('client/build'));
-
-  app.get('/', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-  });
-}
 
 
 
-app.listen(port, () => {
-  console.log({ port });
-});
+app.listen(PORT, () => console.log('Server started on port ' + PORT));
 
