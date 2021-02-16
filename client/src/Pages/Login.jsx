@@ -22,7 +22,7 @@ const loginStyles = makeStyles((theme) => ({
     height: "500px",
     width: "500px",
     outline: "none",
-    [theme.breakpoints.down("sm")]: {
+    [theme.breakpoints.down("xs")]: {
       width: "100%"
     },
   },
@@ -129,13 +129,14 @@ const Login = () => {
           >
             Sign In
           </Button>
-          <Grid container justify="flex-end">
+          <Grid space = {2} container justify="flex-end">
             <Grid item>
               <Link className={classes.link} to = "/register" variant="body2">
                 Don't have an account? Sign Up
               </Link>
             </Grid>
           </Grid>
+          <p>Log in with email: <strong>user@user.com</strong> password: <strong>password</strong> to see a demo</p>
         </form>
       </Paper>
     </div>
