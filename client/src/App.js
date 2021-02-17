@@ -12,6 +12,9 @@ import Register from "./Pages/Register";
 import Dashboard from "./Pages/Dashboard";
 import Board from "./Pages/Board";
 
+//TODO
+
+// Create checklist is up next
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
