@@ -2,14 +2,14 @@ import React, { Fragment, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
-import { getBoard, moveCard, moveList } from '../../../Actions/Board';
+import { getBoard, moveCard, moveList } from '../Actions/Board';
 import { CircularProgress, Box } from '@material-ui/core';
-import BoardTitle from './BoardTitle';
-import BoardDrawer from './Drawer';
-import List from '../List/List';
-import CreateList from './CreateList';
-
-import { NavBar } from '../../NavBar/NavBar';
+import BoardTitle from '../Components/Board/Board/BoardTitle';
+import BoardDrawer from '../Components/Board/Board/Drawer';
+import List from '../Components/Board/List/List';
+import CreateList from '../Components/Board/Board/CreateList';
+import { NavBar } from '../Components/NavBar/NavBar';
+import Alert from '../Components/utils/Alert';
 
 const Board = ({ match }) => {
   const board = useSelector((state) => state.board.board);
@@ -62,6 +62,8 @@ const Board = ({ match }) => {
       }}
     >
       <NavBar />
+      <Alert />
+      
       <section className='board'>
         <div className='board-top'>
           <div className='board-top-left'>

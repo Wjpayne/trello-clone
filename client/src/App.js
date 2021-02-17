@@ -10,7 +10,7 @@ import { useEffect } from "react";
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 import Dashboard from "./Pages/Dashboard";
-import Board from "./Components/Board/Board/Board";
+import Board from "./Pages/Board";
 
 
 if (localStorage.token) {

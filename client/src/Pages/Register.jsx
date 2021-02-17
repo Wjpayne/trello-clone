@@ -9,6 +9,7 @@ import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import { Paper } from "@material-ui/core";
+import Alert from "../Components/utils/Alert";
 
 
 const registerStyles = makeStyles((theme) => ({
@@ -182,6 +183,7 @@ const Register = () => {
             </Grid>
           </Grid>
         </form>
+        <Alert />
       </Paper>
     </div>
   );

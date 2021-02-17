@@ -8,6 +8,7 @@ import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles, Paper } from "@material-ui/core";
+import Alert from "../Components/utils/Alert";
 
 const loginStyles = makeStyles((theme) => ({
   paper: {
@@ -136,8 +137,9 @@ const Login = () => {
               </Link>
             </Grid>
           </Grid>
-          <p>Log in with email: <strong>trello@user.com</strong> password: <strong>password</strong> to see a demo</p>
+          <p>Log in with email: <strong>user@trello.com</strong> password: <strong>password</strong> to see a demo</p>
         </form>
+        <Alert />
       </Paper>
     </div>
   );
