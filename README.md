@@ -1,4 +1,4 @@
-This is a completely repsonive web application using the MERN stack. This App is based off the popular Trello App, with my own styling and features. This is currently a simplified version of the Trell App. I am currently working on adding checlists, teams, members, labels, and several other components and functionalities. This was a fun and challenging project and I plan on using this app in the future for my personal projects instead of Trello.
+This is a completely repsonive web application using the MERN stack. This App is based off the popular Trello App, with my own styling and features. This is currently a simplified version of the Trello App. I am currently working on adding checklists, teams, members, labels, and several other components and functionalities. This was a fun and challenging project and I plan on using this app in the future for my personal projects instead of Trello.
 
 Check out the live project here!
 
